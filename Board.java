@@ -1,33 +1,41 @@
-import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.Arrays;
 import javax.swing.JFrame;
 
-public class Board extends JFrame{
+
+public class Board extends JFrame {
 
     //Properties---------------------------------------
-    private char[][] STATE = new char[][]{};
+    private Location[][] STATE = new Location[][]{
+        {null, null, null},
+        {null, null, null},
+        {null, null, null}
+    };
     
     //Constructor-------------------------------------
     public Board(){
-        System.out.println("A New Board!!!");
-        setTitle("My first Jframe");
-        setSize(400,100);
+        super();
+        super.setTitle("My first Jframe");
+        super.setSize(400,400);
+        super.setLayout(new FlowLayout());
 
-        Location btn = new Location();
-        Dimension d = new Dimension(50,50);
-        btn.setSize(d);
-        Location btn1 = new Location();
-        Location btn2 = new Location();
-        this.add(btn);
-        this.add(btn1);
-        this.add(btn2);
+        for(int i = 0; i < 9 ;i++){
+            this.STATE[i/3][i%3] = new Location(this, i/3, i%3);
+        }
+        
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setLocationRelativeTo(null);
+        super.setVisible(true);
     }
 
 
+
     //Methods------------------------------------------
+    public void tellMeYourState(){
+        System.out.println(Arrays.deepToString(STATE));
+    }
+
 
     
 }
