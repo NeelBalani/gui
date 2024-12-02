@@ -9,7 +9,7 @@ public class Location extends JButton implements ActionListener{
     private int x;
     private int y;
     private Board b;
-    private char symbol;
+    private String symbol;
 
     //Constructors---------------------------------------
     public Location(){
@@ -20,6 +20,7 @@ public class Location extends JButton implements ActionListener{
         this.b = b;
         this.x = x;
         this.y = y;
+
         b.add(this); 
         this.setPreferredSize(new Dimension(100, 100));
         this.addActionListener(this);
@@ -28,10 +29,14 @@ public class Location extends JButton implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        this.symbol = 'x';
-        this.setText("HI");
-        b.tellMeYourState();
+        if(symbol == null){
+        symbol = b.tellMeTheSymbol();
+        this.setText(symbol);
+        b.tellMeYourState(x, y);}
     }
+
+    public String getSymbol(){
+        return symbol;
+    };
 
 }

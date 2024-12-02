@@ -1,5 +1,4 @@
 import java.awt.FlowLayout;
-import java.util.Arrays;
 import javax.swing.JFrame;
 
 
@@ -11,6 +10,7 @@ public class Board extends JFrame {
         {null, null, null},
         {null, null, null}
     };
+    private int count = 0;
     
     //Constructor-------------------------------------
     public Board(){
@@ -32,8 +32,20 @@ public class Board extends JFrame {
 
 
     //Methods------------------------------------------
-    public void tellMeYourState(){
-        System.out.println(Arrays.deepToString(STATE));
+    public void tellMeYourState(int x, int y){
+        System.out.println(STATE[x][y].getSymbol());
+    }
+
+    public String tellMeTheSymbol(){
+        if(count % 2 == 1){
+            count++;
+            return "o";
+        }
+        else{
+            count++;
+            return "x";
+        }
+        
     }
 
 
