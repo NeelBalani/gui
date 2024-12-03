@@ -1,8 +1,9 @@
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Location extends JButton implements ActionListener{
     //Properties-------------------------------------------
@@ -30,13 +31,41 @@ public class Location extends JButton implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(symbol == null){
-        symbol = b.tellMeTheSymbol();
-        this.setText(symbol);
-        b.tellMeYourState(x, y);}
+            symbol = b.tellMeTheSymbol();
+            this.setText(symbol);
+            if(b.checkWin(b.tellMeYourState(x, y))){
+                winStatement(symbol);
+                System.exit(0);
+            }
+            
+        }
+        else{
+            retry();
+        }
     }
 
     public String getSymbol(){
         return symbol;
     };
+
+    public void winStatement(String symbol){
+        JFrame frame = new JFrame("Win Frame");
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JOptionPane.showMessageDialog(frame, symbol + " wins!!!", "Win", JOptionPane.WARNING_MESSAGE);
+
+        frame.setVisible(false);
+    }
+
+    public void retry(){
+        JFrame frame = new JFrame("Retry Frame");
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JOptionPane.showMessageDialog(frame, "Please choose another square.", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        frame.setVisible(false);
+    }
 
 }
