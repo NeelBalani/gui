@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Board extends JFrame {
 
     //Properties---------------------------------------
-    private Location[][] STATE = new Location[][]{
+    private final Location[][] STATE = new Location[][]{
         {null, null, null},
         {null, null, null},
         {null, null, null}
@@ -60,18 +60,19 @@ public class Board extends JFrame {
         }
     }
 
+    public boolean checkTie(){
+        return count == STATE.length * STATE[1].length;
+    }
+
     public boolean checkWin(String symbol){
-        if(checkHor(symbol) || checkVert(symbol) || checkDiagN(symbol) || checkDiagP(symbol)){
-            return true;
-        }
-        return false;
+        return checkHor(symbol) || checkVert(symbol) || checkDiagN(symbol) || checkDiagP(symbol);
     }
     
     public boolean checkHor(String symbol){
-        for(int i = 0; i < STATE.length; i++){
+        for (Location[] STATE1 : STATE) {
             boolean checky = true;
-            for(int j = 0; j < STATE[i].length; j++){
-                if(STATE[i][j].getSymbol() == null || !STATE[i][j].getSymbol().equals(symbol)){
+            for (Location STATE11 : STATE1) {
+                if (STATE11.getSymbol() == null || !STATE11.getSymbol().equals(symbol)) {
                     checky = false;
                     break;
                 }

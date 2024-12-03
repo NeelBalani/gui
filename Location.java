@@ -37,6 +37,10 @@ public class Location extends JButton implements ActionListener{
                 winStatement(symbol);
                 System.exit(0);
             }
+            if(b.checkTie()){
+                tieStatement();
+                System.exit(0);
+            }
             
         }
         else{
@@ -55,6 +59,15 @@ public class Location extends JButton implements ActionListener{
 
         JOptionPane.showMessageDialog(frame, symbol + " wins!!!", "Win", JOptionPane.WARNING_MESSAGE);
 
+        frame.setVisible(false);
+    }
+
+    public void tieStatement(){
+        JFrame frame = new JFrame("Tie Frame");
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JOptionPane.showMessageDialog(frame, "It's a tie", "Tie", JOptionPane.WARNING_MESSAGE);
         frame.setVisible(false);
     }
 
