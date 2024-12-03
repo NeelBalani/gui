@@ -1,3 +1,3 @@
-public class TTT {
+public class Logic {
     
 }
