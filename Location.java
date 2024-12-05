@@ -17,7 +17,7 @@ public class Location extends JButton implements ActionListener{
 
 //Constructor===================================================
 
-    public Location(Board b, int x, int y, PlayerManager pm){
+    public Location(Board b, int x, int y){
         this.b = b;
         this.x = x;
         this.y = y;
@@ -25,7 +25,7 @@ public class Location extends JButton implements ActionListener{
         b.add(this); 
         this.setPreferredSize(new Dimension(100, 100));
         this.addActionListener(this);
-       this.pm = pm;
+       this.pm = b.getPlayerManager();
     }
     
     @Override

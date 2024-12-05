@@ -15,17 +15,19 @@ public class Board extends JFrame {
         {null, null, null}
     };
     private int count = 0;
+    private PlayerManager pm;
     
     //Constructor-------------------------------------
     public Board() throws FileNotFoundException, IOException{
         super();
+        pm = new PlayerManager();
         super.setTitle("My first Jframe");
         super.setSize(400,400);
         super.setLayout(new FlowLayout());
         
 
         for(int i = 0; i < 9 ;i++){
-            this.STATE[i/3][i%3] = new Location(this, i/3, i%3, new PlayerManager());
+            this.STATE[i/3][i%3] = new Location(this, i/3, i%3);
         }
 
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,5 +126,10 @@ public class Board extends JFrame {
         }
         return true;
     }
-
+    
+    
+    
+    public PlayerManager getPlayerManager() {
+        return pm;
+    }
 }

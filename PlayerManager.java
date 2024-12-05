@@ -11,23 +11,23 @@
  * IDK what to write for the 3rd bullet
  */
 
- import java.io.FileNotFoundException;
- import java.util.ArrayList;
  import java.io.File;
+ import java.io.FileNotFoundException;
  import java.io.FileWriter;
- import java.util.Scanner;
  import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.Scanner;
  
  public class PlayerManager {
-   //Properties------------------------------
-   private ArrayList<String> list = new ArrayList<String>();
-   private ArrayList<Integer> winList = new ArrayList<Integer>();
-   private ArrayList<Integer> lossList = new ArrayList<Integer>();
-   private ArrayList<Integer> tieList = new ArrayList<Integer>();
-   String[] WordList;
+  //Properties------------------------------
+  private ArrayList<String> list = new ArrayList<String>();
+  private ArrayList<Integer> winList = new ArrayList<Integer>();
+  private ArrayList<Integer> lossList = new ArrayList<Integer>();
+  private ArrayList<Integer> tieList = new ArrayList<Integer>();
+  String[] WordList;
  
    //Constructors----------------------------
-   public PlayerManager() throws FileNotFoundException, IOException{
+  public PlayerManager() throws FileNotFoundException, IOException{
      File f = new File("PlayerHub.csv");
  
      Scanner s = new Scanner(f);
@@ -42,29 +42,27 @@
          tieList.add(Integer.parseInt(WordList[3]));
        }
      }      
-   }
+  }
          //Methods---------------------------------
-         public String GetName(int index){
+  public String GetName(int index){
            if(index < list.size()){
              return list.get(index);
            }
            else{
            return "\u0000";
          }
-         }
+  }
  
-         @SuppressWarnings("null")
-        public int getWins(int index){
-            if(index < list.size()){
-                return winList.get(index);
-            }
-            else{
-                return (Integer) null;
-            }
-         }
+  public int getWins(int index){
+    if(index < list.size()){
+      return winList.get(index);
+    }
+    else{
+      return (Integer) null;
+    }
+  }
  
  
-         @SuppressWarnings("null")
         public int getLosses(int index){
            if(index < list.size()){
              return lossList.get(index);
@@ -85,8 +83,13 @@
          }
  
 
- 
-         public void addLose(int index)throws FileNotFoundException, IOException{
+    public void setWinner(int winner, int looser)throws FileNotFoundException, IOException{
+      addLose(looser);
+      addWin(winner);
+      
+    }
+
+    public void addLose(int index)throws FileNotFoundException, IOException{
            int PreLose = lossList.get(index);
            System.out.println(PreLose);
            PreLose++;
