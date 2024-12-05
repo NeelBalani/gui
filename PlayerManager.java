@@ -38,8 +38,11 @@
          WordList = s.nextLine().split(",");
          list.add(WordList[0]);
          winList.add(Integer.parseInt(WordList[1]));
+         System.out.println(WordList[1]);
          lossList.add(Integer.parseInt(WordList[2]));
+         System.out.println(WordList[2]);
          tieList.add(Integer.parseInt(WordList[3]));
+         System.out.println(WordList[3]);
        }
      }      
   }
@@ -86,39 +89,42 @@
     public void setWinner(int winner, int looser)throws FileNotFoundException, IOException{
       addLose(looser);
       addWin(winner);
-      
+      update();
     }
 
     public void addLose(int index)throws FileNotFoundException, IOException{
            int PreLose = lossList.get(index);
-           System.out.println(PreLose);
+           //System.out.println(PreLose);
            PreLose++;
-           System.out.println(PreLose);
+           //System.out.println(PreLose);
+           lossList.remove(index);
            lossList.add(index, PreLose);
-           System.out.println(getLosses(1));
-           update();
+           //System.out.println(getLosses(1));
          }
 
          public void addWin(int index)throws FileNotFoundException, IOException{
             int PreWins = winList.get(index);
             PreWins++;
+            winList.remove(index);
             winList.add(index, PreWins);
+            System.out.println(winList.get(1));
           }
  
          public void addTie(int index) throws FileNotFoundException, IOException{
            int PreTie = tieList.get(index);
            PreTie++;
+           tieList.remove(index);
            tieList.add(index, PreTie);
-           update();
          }
  
-         public void update() throws FileNotFoundException, IOException{
-           FileWriter writer = new FileWriter("PlayerHub.csv", false);
-           writer.write(GetName(0) + "," + getWins(0) + "," + getLosses(0) + "," + getTies(0));
-           writer.write("\n");
-           writer.write(GetName(1) + "," + getWins(1) + "," + getLosses(1) + "," + getTies(1));
-           writer.close();
-         }
+        public void update() throws FileNotFoundException, IOException{
+            System.out.println(lossList.size());
+            FileWriter writer = new FileWriter("PlayerHub.csv", false);
+            writer.write(GetName(0) + "," + getWins(0) + "," + getLosses(0) + "," + getTies(0));
+            writer.write("\n");
+            writer.write(GetName(1) + "," + getWins(1) + "," + getLosses(1) + "," + getTies(1));
+            writer.close();
+        }
  
  }
  
