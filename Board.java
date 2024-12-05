@@ -1,4 +1,7 @@
+
 import java.awt.FlowLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -6,7 +9,7 @@ import javax.swing.JOptionPane;
 public class Board extends JFrame {
 
     //Properties---------------------------------------
-    private final Location[][] STATE = new Location[][]{
+    private Location[][] STATE = new Location[][]{
         {null, null, null},
         {null, null, null},
         {null, null, null}
@@ -14,7 +17,7 @@ public class Board extends JFrame {
     private int count = 0;
     
     //Constructor-------------------------------------
-    public Board(){
+    public Board() throws FileNotFoundException, IOException{
         super();
         super.setTitle("My first Jframe");
         super.setSize(400,400);
@@ -22,7 +25,7 @@ public class Board extends JFrame {
         
 
         for(int i = 0; i < 9 ;i++){
-            this.STATE[i/3][i%3] = new Location(this, i/3, i%3);
+            this.STATE[i/3][i%3] = new Location(this, i/3, i%3, new PlayerManager());
         }
 
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,18 +64,20 @@ public class Board extends JFrame {
     }
 
     public boolean checkTie(){
-        return count == STATE.length * STATE[1].length;
+        return count == 9;
     }
-
     public boolean checkWin(String symbol){
-        return checkHor(symbol) || checkVert(symbol) || checkDiagN(symbol) || checkDiagP(symbol);
+        if(checkHor(symbol) || checkVert(symbol) || checkDiagN(symbol) || checkDiagP(symbol)){
+            return true;
+        }
+        return false;
     }
     
     public boolean checkHor(String symbol){
-        for (Location[] STATE1 : STATE) {
+        for(int i = 0; i < STATE.length; i++){
             boolean checky = true;
-            for (Location STATE11 : STATE1) {
-                if (STATE11.getSymbol() == null || !STATE11.getSymbol().equals(symbol)) {
+            for(int j = 0; j < STATE[i].length; j++){
+                if(STATE[i][j].getSymbol() == null || !STATE[i][j].getSymbol().equals(symbol)){
                     checky = false;
                     break;
                 }
@@ -121,4 +126,3 @@ public class Board extends JFrame {
     }
 
 }
-
