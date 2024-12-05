@@ -80,10 +80,8 @@ public class Location extends JButton implements ActionListener{
     public void win()throws FileNotFoundException, IOException{
         if(b.checkWin(b.tellMeYourState(x, y))){
             winStatement(symbol);
-            System.out.println(symbol);
             if(symbol.equals("x")){
                 pm.setWinner(0, 1);
-                System.out.println("HIGH");
             }
             else{
                 pm.setWinner(1, 0);
