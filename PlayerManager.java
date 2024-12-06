@@ -44,6 +44,10 @@
      }      
   }
          //Methods---------------------------------
+         public int listNum(){
+          return list.size();
+         }
+
   public String GetName(int index){
            if(index < list.size()){
              return list.get(index);
@@ -86,6 +90,11 @@
     public void setWinner(int winner, int looser)throws FileNotFoundException, IOException{
       addLose(looser);
       addWin(winner);
+      update();
+    }
+    public void setTie(int p1, int p2) throws FileNotFoundException, IOException{
+      addTie(p1);
+      addTie(p2);
       update();
     }
 

@@ -16,6 +16,8 @@ public class Board extends JFrame {
     };
     private int count = 0;
     private PlayerManager pm;
+    private Player p1 = new Player();
+    private Player p2 = new Player();
     
     //Constructor-------------------------------------
     public Board() throws FileNotFoundException, IOException{
@@ -25,9 +27,13 @@ public class Board extends JFrame {
         super.setSize(400,400);
         super.setLayout(new FlowLayout());
         
+        while(p1.getPlayerNum() == p2.getPlayerNum()){
+            p2.playerChange();
+        }
+        
 
         for(int i = 0; i < 9 ;i++){
-            this.STATE[i/3][i%3] = new Location(this, i/3, i%3);
+            this.STATE[i/3][i%3] = new Location(this, i/3, i%3, p1.getPlayerNum(), p2.getPlayerNum());
         }
 
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

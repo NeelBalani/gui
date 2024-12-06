@@ -14,10 +14,13 @@ public class Location extends JButton implements ActionListener{
     private Board b;
     private String symbol;
     private PlayerManager pm;
+    private int p1;
+    private int p2;
+
 
 //Constructor===================================================
 
-    public Location(Board b, int x, int y){
+    public Location(Board b, int x, int y , int p1, int p2){
         this.b = b;
         this.x = x;
         this.y = y;
@@ -81,17 +84,17 @@ public class Location extends JButton implements ActionListener{
         if(b.checkWin(b.tellMeYourState(x, y))){
             winStatement(symbol);
             if(symbol.equals("x")){
-                pm.setWinner(0, 1);
+                pm.setWinner(p1, p2);
             }
             else{
-                pm.setWinner(1, 0);
+                pm.setWinner(p2, p1);
             }
             System.exit(0);
         }
         else if(b.checkTie()){
-            pm.addTie(0);
-            pm.addTie(1);
+            pm.setTie(p1, p2);
             tieStatement();
+            System.exit(0);
         }   
     }
 
