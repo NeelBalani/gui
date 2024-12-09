@@ -23,6 +23,8 @@ public class Location extends JButton implements ActionListener{
     public Location(Board b, int x, int y , int p1, int p2){
         this.b = b;
         this.x = x;
+        this.p1 = p1;
+        this.p2 = p2;
         this.y = y;
 
         b.add(this); 

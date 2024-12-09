@@ -22,7 +22,7 @@ public class Player {
 
     public int playerChange(){
         Scanner s = new Scanner(System.in);
-        System.out.println("This player is taken choose another one: ");
+        System.out.println("This player is taken choose another one or press -1 to add another player: ");
         for(int i = 0; i < pm.listNum(); i++){
             System.out.println(i + ":" + pm.GetName(i));
         }

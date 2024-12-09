@@ -16,6 +16,7 @@
  import java.io.FileWriter;
  import java.io.IOException;
  import java.util.ArrayList;
+import java.util.List;
  import java.util.Scanner;
  
  public class PlayerManager {
@@ -117,13 +118,17 @@
            PreTie++;
            tieList.remove(index);
            tieList.add(index, PreTie);
+           
          }
  
         public void update() throws FileNotFoundException, IOException{
             FileWriter writer = new FileWriter("PlayerHub.csv", false);
-            writer.write(GetName(0) + "," + getWins(0) + "," + getLosses(0) + "," + getTies(0));
-            writer.write("\n");
-            writer.write(GetName(1) + "," + getWins(1) + "," + getLosses(1) + "," + getTies(1));
+            for(int i = 0; i < listNum(); i++){
+              writer.write(GetName(i) + "," + getWins(i) + "," + getLosses(i) + "," + getTies(i));
+              if(i +1 < listNum()){
+                writer.write("\n");
+              }
+            }
             writer.close();
         }
  
