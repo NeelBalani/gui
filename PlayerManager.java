@@ -99,6 +99,13 @@ import java.util.List;
       update();
     }
 
+    public void addPlayer(String name){
+      list.add(name);
+      winList.add(0);
+      lossList.add(0);
+      tieList.add(0);
+    }
+
     public void addLose(int index)throws FileNotFoundException, IOException{
            int PreLose = lossList.get(index);
            PreLose++;
